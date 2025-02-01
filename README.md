@@ -1,3 +1,3 @@
-# it_way_bd_task_md_rahat
+# prostuti
 
 A new Flutter project.
