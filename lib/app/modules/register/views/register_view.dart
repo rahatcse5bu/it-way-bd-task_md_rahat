@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prostuti/app/common/custom_styles.dart';
-import 'package:prostuti/app/constant/app_color.dart';
+import '../../../common/custom_styles.dart';
+import '../../../constant/app_color.dart';
 import '../controllers/register_controller.dart';
 import '../widgets/register_form.dart';
 

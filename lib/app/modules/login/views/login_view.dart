@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prostuti/app/common/custom_styles.dart';
-import 'package:prostuti/app/constant/app_color.dart';
+import '../../../common/custom_styles.dart';
 import '../../../common/widgets/breathing_animation/custom_loader_widget.dart';
 import '../../../common/widgets/header_curve_logo_widget.dart';
+import '../../../constant/app_color.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/login_widget.dart';
 

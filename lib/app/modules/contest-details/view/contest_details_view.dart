@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prostuti/app/common/custom_bottom_fixed_button.dart';
-import 'package:prostuti/app/common/utils/prostuti_utils.dart';
-import 'package:prostuti/app/constant/app_color.dart';
-import 'package:prostuti/app/modules/questions/models/question_model.dart';
-
+import '../../../common/custom_bottom_fixed_button.dart';
 import '../../../common/custom_simple_appbar.dart';
+import '../../../common/utils/task_utils.dart';
 import '../../../common/widgets/countdown_timer.dart';
+import '../../../constant/app_color.dart';
 import '../../contests/controller/contest_controller.dart';
 import '../../questions/models/option_model.dart';
+import '../../questions/models/question_model.dart';
 import '../controller/contest_details_controller.dart';
 
 class ContestDetailsView extends GetView<ContestDetailsController> {

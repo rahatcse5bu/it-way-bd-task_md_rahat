@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:prostuti/app/constant/app_color.dart';
-import 'package:prostuti/app/routes/app_pages.dart';
-
+import '../constant/app_color.dart';
+import '../routes/app_pages.dart';
 import 'controller/app_controller.dart';
-import 'utils/prostuti_utils.dart';
+import 'utils/task_utils.dart';
 
 class CustomAppBar {
   // Static method to create a custom app bar

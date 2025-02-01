@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../common/custom_appbar.dart';
 import '../../../common/widgets/bottom_nav_bar_widget.dart';
-import '../../search-page/view/search_view.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_bottom_nav_more_bottom_sheet.dart';
 import '../widgets/home_main_widget.dart';
@@ -13,7 +12,7 @@ class HomeView extends GetView<HomeController> {
 
   final List<Widget> _pages = [
     const HomeMainWidget(),
-    const SearchView(),
+
 
     const Center(child: Text('More Page')),
   ];

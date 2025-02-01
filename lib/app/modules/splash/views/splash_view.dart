@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:prostuti/app/constant/app_color.dart';
 
+import '../../../constant/app_color.dart';
 import '../../../routes/app_pages.dart';
 import '../../../storage/storage_helper.dart';
 

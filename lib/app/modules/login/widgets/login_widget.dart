@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prostuti/app/common/custom_styles.dart';
-import 'package:prostuti/app/constant/app_color.dart';
+
+import '../../../common/custom_styles.dart';
+import '../../../constant/app_color.dart';
 
 class LoginWidget extends StatefulWidget {
   final TextEditingController emailController;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prostuti/app/common/utils/prostuti_utils.dart';
 
 import '../../../common/custom_buttons.dart';
+import '../../../common/utils/task_utils.dart';
 import '../../../common/widgets/countdown_timer.dart';
 import '../../../routes/app_pages.dart';
 import '../controller/contest_controller.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prostuti/app/common/custom_buttons.dart';
-import 'package:prostuti/app/constant/app_color.dart';
 
+import '../../constant/app_color.dart';
+import '../custom_buttons.dart';
 class CustomBottomNavBar extends StatelessWidget {
   final int? currentIndex;
   final ValueChanged<int> onTap; // Correct type for the callback

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:prostuti/app/routes/app_pages.dart';
 
 import '../../../common/custom_card.dart';
+import '../../../routes/app_pages.dart';
 import '../models/contest_model.dart';
 
 class ContestWidget extends GetWidget {

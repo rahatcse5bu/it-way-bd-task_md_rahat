@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:prostuti/app/common/custom_appbar.dart';
+import '../../../common/custom_appbar.dart';
 import '../controller/contest_controller.dart';
 import '../widgets/contest_widget.dart';
 

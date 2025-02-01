@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prostuti/app/common/custom_buttons.dart';
+
+import 'custom_buttons.dart';
 
 class CustomBottomFixedButton extends StatelessWidget {
   final String buttonText;

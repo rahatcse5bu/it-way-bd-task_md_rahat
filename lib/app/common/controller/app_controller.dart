@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:get/get.dart';
 
 import '../../APIs/api_helper.dart';
-import '../utils/prostuti_utils.dart';
+import '../utils/task_utils.dart';
 
 class AppController extends GetxController {
     final ApiHelper _apiHelper = Utils.getApiHelperController();

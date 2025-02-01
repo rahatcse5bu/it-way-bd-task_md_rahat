@@ -2,12 +2,9 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:get/get_connect/connect.dart';
-import 'package:prostuti/app/APIs/custom_error.dart';
-
 import '../constant/app_config.dart';
 import '../modules/contest-details/models/contest_details_model.dart';
 import '../modules/contests/models/contest_model.dart';
-import '../modules/exam-topics/models/exam_topics_model.dart';
 import '../modules/exam-types/models/exam_type_model.dart';
 import '../modules/login/models/login_request_model.dart';
 import '../modules/login/models/login_response_model.dart';
@@ -16,6 +13,7 @@ import '../modules/register/models/register_model.dart';
 import '../modules/subjects/models/subjects_model.dart';
 import '../storage/storage_helper.dart';
 import 'api_helper.dart';
+import 'custom_error.dart';
 
 class ApiHelperImpl extends GetConnect implements ApiHelper {
   @override
@@ -340,28 +338,6 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
     }
   }
 
-  @override
-  Future<Either<CustomError, List<SubjectTopics>>>
-      fetchSubCategoriesByCategoryId(String categoryId) async {
-    try {
-      final response = await get('topics/all-topics-by-id/$categoryId');
-
-      if (response.statusCode == 200 && response.body['success'] == true) {
-        final List<dynamic> data = response.body['data'];
-        final subCategories =
-            data.map((json) => SubjectTopics.fromJson(json)).toList();
-        return Right(subCategories);
-      } else {
-        return Left(CustomError(
-          response.statusCode,
-          message: response.body['message'] ?? 'Failed to fetch subcategories',
-        ));
-      }
-    } catch (e) {
-      log('Error fetching subcategories: $e');
-      return Left(CustomError(500, message: 'Network error: $e'));
-    }
-  }
 
  
 }

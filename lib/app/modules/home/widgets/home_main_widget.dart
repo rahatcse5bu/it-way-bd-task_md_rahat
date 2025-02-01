@@ -3,14 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:prostuti/app/common/custom_buttons.dart';
-import 'package:prostuti/app/common/utils/prostuti_utils.dart';
+
+import '../../../common/custom_buttons.dart';
 import '../../../common/custom_prostuti_dialog.dart';
+import '../../../common/utils/task_utils.dart';
 import '../../contests/widgets/contest_cards_home_page_widget.dart';
-import '../../custom-exam/widgets/custom_exam_home_card_widget.dart';
-import '../../exam-topics/widgets/exam_topics_widget.dart';
 import '../../exam-types/widgets/exam-categories-widget.dart';
-import '../../model_tests/widgets/model_test_home_widget.dart';
 import '../controller/home_controller.dart';
 
 class HomeMainWidget extends GetWidget<HomeController> {
@@ -67,13 +65,11 @@ class HomeMainWidget extends GetWidget<HomeController> {
             const ContestHomeCardsWrapperWidget(),
             SizedBox(height: 23.h),
             const ExamCategoriesWidget(),
+    
             SizedBox(height: 23.h),
-            const ExamTopicsWidget(),
+            // const ModelTestHomeWidget(),
             SizedBox(height: 23.h),
-            const ModelTestHomeWidget(),
-            SizedBox(height: 23.h),
-            SizedBox(height: 23.h),
-            const CustomExamHomeCardWidget()
+         
           ],
         ),
       ),

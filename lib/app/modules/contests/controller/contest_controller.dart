@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import '../../../APIs/api_helper.dart';
-import '../../../common/utils/prostuti_utils.dart';
+import '../../../common/utils/task_utils.dart';
 import '../models/contest_model.dart';
 
 class ContestController extends GetxController {
