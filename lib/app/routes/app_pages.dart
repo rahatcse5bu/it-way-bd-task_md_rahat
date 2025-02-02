@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import '../modules/contests/bindings/it_way_bd_task_binding.dart';
-import '../modules/contests/views/it_way_bd_task_view.dart';
+import '../modules/it_way_bd_tasks/bindings/it_way_bd_task_binding.dart';
+import '../modules/it_way_bd_tasks/views/it_way_bd_task_view.dart';
 import '../modules/home/binding/home_binding.dart';
 import '../modules/home/view/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';

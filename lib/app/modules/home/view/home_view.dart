@@ -7,7 +7,7 @@ import '../../../common/custom_buttons.dart';
 import '../../../common/custom_simple_appbar.dart';
 import '../../../common/utils/task_utils.dart';
 import '../../../common/widgets/bottom_nav_bar_widget.dart';
-import '../../contests/views/it_way_bd_task_view.dart';
+import '../../it_way_bd_tasks/views/it_way_bd_task_view.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_main_widget.dart';
 

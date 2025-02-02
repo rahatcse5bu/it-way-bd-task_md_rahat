@@ -13,7 +13,7 @@ class _CustomLoaderWidgetState extends State<CustomLoaderWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _breathAnimation;
-  String logoPath = "assets/logo/Logo-no-bg.png";
+  String logoPath = "assets/logo/Logo.png";
   double size = 120.0;
 
   @override

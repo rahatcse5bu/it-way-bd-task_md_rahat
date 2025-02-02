@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../common/custom_buttons.dart';
 import '../../../common/custom_it_way_bd_dialog.dart';
 import '../../../common/utils/task_utils.dart';
-import '../../contests/views/it_way_bd_task_view.dart';
+import '../../it_way_bd_tasks/views/it_way_bd_task_view.dart';
 import '../controller/home_controller.dart';
 
 class HomeMainWidget extends GetWidget<HomeController> {

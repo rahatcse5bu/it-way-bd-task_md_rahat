@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:get/get_connect/connect.dart';
 import '../constant/app_config.dart';
-import '../modules/contests/models/it_way_bd_task_model.dart';
+import '../modules/it_way_bd_tasks/models/it_way_bd_task_model.dart';
 import '../modules/login/models/login_request_model.dart';
 import '../modules/login/models/login_response_model.dart';
 import '../modules/register/models/register_model.dart';

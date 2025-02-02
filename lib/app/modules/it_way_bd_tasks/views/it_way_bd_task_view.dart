@@ -212,6 +212,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
               );
             }),
           ),
+          SizedBox(height: 70.h,)
         ],
       ),
 

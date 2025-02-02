@@ -14,7 +14,7 @@ class _BreathLoadingAnimationState extends State<BreathLoadingAnimation>
   late AnimationController _controller;
   late Animation<double> _breathAnimation;
 //  String logoPath ="assets/icons/icon.jpg";
-  String logoPath = "assets/logo/Logo-no-bg.png";
+  String logoPath = "assets/logo/Logo.png";
   @override
   void initState() {
     super.initState();
