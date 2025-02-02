@@ -115,7 +115,7 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
   /// Create New Task
   @override
   Future<Either<CustomError, ITWayBDTask>> createTask(
-      String title, String description) async {
+      String title, String description, String dueDate) async {
     try {
       final response = await post('tasks', {
         "title": title,
@@ -157,10 +157,11 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
       return Left(CustomError(500, message: 'Network error: $e'));
     }
   }
- /// **Edit Task (PUT Request)**
- @override
-  Future<Either<CustomError, ITWayBDTask>> editTask(
-      String taskId, String title, String description, String status, String dueDate) async {
+
+  /// **Edit Task (PUT Request)**
+  @override
+  Future<Either<CustomError, ITWayBDTask>> editTask(String taskId, String title,
+      String description, String status, String dueDate) async {
     try {
       final response = await put('tasks/$taskId', {
         "title": title,
@@ -181,6 +182,7 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
       return Left(CustomError(500, message: 'Network error: $e'));
     }
   }
+
   /// **Delete Task (DELETE Request)**
   @override
   Future<Either<CustomError, String>> deleteTask(String taskId) async {

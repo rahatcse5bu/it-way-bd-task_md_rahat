@@ -52,18 +52,21 @@ class ITWayBDTaskController extends GetxController {
   }
 
   /// Create Task and Update UI
-  Future<void> createTask(String title, String description) async {
+  Future<void> createTask(String title, String description,String dueDate) async {
     isLoading.value = true;
 
-    final response = await _apiHelper.createTask(title, description);
+    final response = await _apiHelper.createTask(title, description,dueDate );
     response.fold(
       (error) {
         Get.snackbar('Error', error.message);
       },
       (newTask) {
         tasks.add(newTask); // ✅ Add new task to the list dynamically
+     /// **Ensure UI Updates Before Closing BottomSheet**
+      Future.delayed(Duration(milliseconds: 300), () {
+        Get.back(); // ✅ Close the bottom sheet after task creation
         Get.snackbar('Success', 'Task created successfully!');
-        Get.back(); // ✅ Close the dialog after task creation
+      });
       },
     );
 

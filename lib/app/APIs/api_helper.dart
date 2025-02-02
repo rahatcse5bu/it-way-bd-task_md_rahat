@@ -16,7 +16,7 @@ abstract class ApiHelper {
   Future<Either<CustomError, List<ITWayBDTask>>> fetchAllTasks();
 
   Future<Either<CustomError, ITWayBDTask>> createTask(
-      String title, String description);
+      String title, String description, String dueDate);
   Future<Either<CustomError, ITWayBDTask>> markTaskAsCompleted(String taskId);
     Future<Either<CustomError, ITWayBDTask>> editTask(
       String taskId, String title, String description, String status, String dueDate);
