@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../common/utils/task_utils.dart';
 import '../controller/it_way_bd_task_controller.dart';
 import '../models/it_way_bd_task_model.dart';
-import '../widgets/create_it_way_bd_task_popup.dart';
+import '../widgets/create_it_way_bd_task_bottomsheet.dart';
 
 class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
   @override
@@ -169,7 +169,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
       /// **Floating Action Button (FAB) to Open Create Task Dialog**
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showCreateTaskDialog(controller);
+          showCreateTaskBottomSheet(controller);
         },
         child: Icon(Icons.add),
       ),
