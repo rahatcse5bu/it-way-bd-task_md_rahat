@@ -69,6 +69,29 @@ class ITWayBDTaskController extends GetxController {
 
     isLoading.value = false;
   }
+
+  /// **Mark Task as Completed**
+  Future<void> markAsCompleted(String taskId) async {
+    isLoading.value = true;
+
+    final response = await _apiHelper.markTaskAsCompleted(taskId);
+    response.fold(
+      (error) {
+        Get.snackbar('Error', error.message);
+      },
+      (updatedTask) {
+        // ✅ Find the task & update its status in the list
+        int index = tasks.indexWhere((task) => task.id == taskId);
+        if (index != -1) {
+          tasks[index] = updatedTask;
+        }
+        Get.snackbar('Success', 'Task marked as completed!');
+      },
+    );
+
+    isLoading.value = false;
+  }
+
    /// Get Filtered Tasks Based on Tab and Search Query
   List<ITWayBDTask> get filteredTasks {
     List<ITWayBDTask> filtered = tasks;

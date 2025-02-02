@@ -121,10 +121,18 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                               DateTime.parse(task.dueDate ?? ''))),
                         ],
                       ),
-                      trailing: Text(
-                        task.status?.toUpperCase() ?? "Unknown",
-                        style: TextStyle(color: _getBorderColor(task)),
-                      ),
+                      // trailing: Text(
+                      //   task.status?.toUpperCase() ?? "Unknown",
+                      //   style: TextStyle(color: _getBorderColor(task)),
+                      // ),
+                          trailing: task.status == "completed"
+                          ? Icon(Icons.check, color: Colors.green)
+                          : IconButton(
+                              icon: Icon(Icons.check_box_outline_blank),
+                              onPressed: () {
+                                controller.markAsCompleted(task.id);
+                              },
+                            ),
                     ),
                   );
                 },
