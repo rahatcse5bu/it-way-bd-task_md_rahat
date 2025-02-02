@@ -13,36 +13,35 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
     return Scaffold(
       body: Column(
         children: [
-            /// **Search Bar**
+          /// **Search Bar**
           Padding(
             padding: EdgeInsets.all(10.h),
             child: TextField(
               onChanged: controller.updateSearchQuery,
               decoration: InputDecoration(
-
                 hintText: "Search tasks...",
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey, width: 1),
-
                   borderRadius: BorderRadius.circular(8.r),
                 ),
               ),
             ),
           ),
+
           /// **Tabs Positioned Inside the Body**
           Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _tabButton("All", 0, controller),
-                    _tabButton("Pending", 1, controller),
-                    _tabButton("Completed", 2, controller),
-                    _tabButton("Deleted", 3, controller),
-                  ],
-                ),
-              ),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _tabButton("All", 0, controller),
+                _tabButton("Pending", 1, controller),
+                _tabButton("Completed", 2, controller),
+                _tabButton("Deleted", 3, controller),
+              ],
+            ),
+          ),
 
           /// **Filtered Task List**
           Expanded(
@@ -53,6 +52,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
               if (controller.errorMessage.isNotEmpty) {
                 return Center(child: Text(controller.errorMessage.value));
               }
+
               /// **Get Filtered Tasks (by Tab & Search)**
               List<ITWayBDTask> filteredTasks = controller.filteredTasks;
 
@@ -96,6 +96,8 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                     child: ListTile(
                       title: Text(
                         task.title ?? "No Title",
+                        maxLines: 1, // ✅ Restrict to 1 line
+                        overflow: TextOverflow.ellipsis, // ✅ Add ellipsis (...)
                         style: TextStyle(
                           decoration: task.status == "completed"
                               ? TextDecoration.lineThrough
@@ -109,6 +111,9 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                           Divider(),
                           Text(
                             task.description ?? "No Description",
+                            maxLines: 1, // ✅ Restrict to 1 line
+                            overflow:
+                                TextOverflow.ellipsis, // ✅ Add ellipsis (...)
                             style: TextStyle(
                               decoration: task.status == "completed"
                                   ? TextDecoration.lineThrough
@@ -125,14 +130,25 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                       //   task.status?.toUpperCase() ?? "Unknown",
                       //   style: TextStyle(color: _getBorderColor(task)),
                       // ),
-                          trailing: task.status == "completed"
-                          ? Icon(Icons.check, color: Colors.green)
-                          : IconButton(
-                              icon: Icon(Icons.check_box_outline_blank),
-                              onPressed: () {
-                                controller.markAsCompleted(task.id);
-                              },
-                            ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          task.status == "completed"
+                              ? Icon(Icons.check, color: Colors.green)
+                              : IconButton(
+                                  icon: Icon(Icons.check_box_outline_blank),
+                                  onPressed: () {
+                                    controller.markAsCompleted(task.id);
+                                  },
+                                ),
+                          IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              controller.deleteTask(task.id);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

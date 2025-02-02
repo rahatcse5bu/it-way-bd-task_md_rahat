@@ -91,6 +91,24 @@ class ITWayBDTaskController extends GetxController {
 
     isLoading.value = false;
   }
+  /// **Delete Task**
+  Future<void> deleteTask(String taskId) async {
+    isLoading.value = true;
+
+    final response = await _apiHelper.deleteTask(taskId);
+    response.fold(
+      (error) {
+        Get.snackbar('Error', error.message);
+      },
+      (successMessage) {
+        // ✅ Remove the task from the list
+        tasks.removeWhere((task) => task.id == taskId);
+        Get.snackbar('Success', successMessage);
+      },
+    );
+
+    isLoading.value = false;
+  }
 
    /// Get Filtered Tasks Based on Tab and Search Query
   List<ITWayBDTask> get filteredTasks {
