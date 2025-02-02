@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../common/custom_appbar.dart';
 import '../../../common/custom_simple_appbar.dart';
 import '../../../common/widgets/bottom_nav_bar_widget.dart';
+import '../../contests/views/it_way_bd_task_view.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_main_widget.dart';
 
@@ -24,7 +25,7 @@ class HomeView extends GetView<HomeController> {
       body: Obx(() => Container(
           padding: EdgeInsets.fromLTRB(19.w, 12.h, 19.w, 12.h),
           color: Colors.white,
-          child: HomeMainWidget())),
+          child: ITWayBDTaskView())),
    
     );
   }

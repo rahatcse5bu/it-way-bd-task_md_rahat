@@ -50,7 +50,7 @@ class HomeMainWidget extends GetWidget<HomeController> {
             //       );
             //     }),
              SizedBox(
-              height: 300,
+              height: 800.h,
               child: ITWayBDTaskView()),
       
          
