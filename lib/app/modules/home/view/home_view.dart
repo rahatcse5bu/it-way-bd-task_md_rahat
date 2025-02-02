@@ -12,6 +12,9 @@ class HomeView extends GetView<HomeController> {
 
   final List<Widget> _pages = [
     const HomeMainWidget(),
+    const HomeMainWidget(),
+    const HomeMainWidget(),
+    const HomeMainWidget(),
 
 
     const Center(child: Text('More Page')),

@@ -98,12 +98,14 @@ Future<Either<CustomError, List<ITWayBDTask>>> fetchAllTasks() async {
     final response = await get('tasks');
 
     if (response.statusCode == 200 && response.body['success'] == true) {
-      // ✅ Ensure response.body['data'] is correctly casted before mapping
+     // ✅ Explicitly cast response.body['data'] to a List<Map<String, dynamic>>
       final List<dynamic> jsonList = response.body['data']; 
 
-      final List<ITWayBDTask> tasks = jsonList
-          .map((json) => ITWayBDTask.fromJson(json as Map<String, dynamic>))
-          .toList();
+      // ✅ Map JSON data safely to ITWayBDTask objects
+      final List<ITWayBDTask> tasks = jsonList.map((item) {
+        return ITWayBDTask.fromJson(item as Map<String, dynamic>);
+      }).toList();
+
 
       return Right(tasks);
     } else {

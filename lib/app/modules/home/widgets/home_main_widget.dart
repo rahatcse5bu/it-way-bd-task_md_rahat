@@ -33,23 +33,25 @@ class HomeMainWidget extends GetWidget<HomeController> {
             SizedBox(
               height: 10.h,
             ),
-            CustomButton.button(
-                text: "Dialog",
-                onPressed: () {
+            // CustomButton.button(
+            //     text: "Dialog",
+            //     onPressed: () {
 
-                  PostutiDialog.warning(
-                    "Are you sure you want to proceed?",
-                    isBottomButton: true,
-                    noOfButtons: 3,
-                    buttonLabels: ["Yes", "No", "Cancel"],
-                    buttonActions: [
-                      () => print("Yes pressed"),
-                      () => print("No pressed"),
-                      () => Get.back(),
-                    ],
-                  );
-                }),
-             ITWayBDTaskView(),
+            //       PostutiDialog.warning(
+            //         "Are you sure you want to proceed?",
+            //         isBottomButton: true,
+            //         noOfButtons: 3,
+            //         buttonLabels: ["Yes", "No", "Cancel"],
+            //         buttonActions: [
+            //           () => print("Yes pressed"),
+            //           () => print("No pressed"),
+            //           () => Get.back(),
+            //         ],
+            //       );
+            //     }),
+             SizedBox(
+              height: 300,
+              child: ITWayBDTaskView()),
       
          
           ],

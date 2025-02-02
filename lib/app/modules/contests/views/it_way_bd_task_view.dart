@@ -9,30 +9,31 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: CustomSimpleAppBar.appBar(title: "Tasks List"),
       body: Obx(() {
         if (controller.isLoading.value) {
           return Center(child: CircularProgressIndicator());
         }
-        if (controller.tasks.isNotEmpty) {
-          return Center(child: Text("Error"));
-        }
+        // if (controller.tasks.isNotEmpty) {
+        //   return Center(child: Text("Error"));
+        // }
         if (controller.tasks.isEmpty) {
           return Center(child: Text("No tasks available"));
         }
 
-        return ListView.builder(
-          itemCount: controller.tasks.length,
-          itemBuilder: (context, index) {
-            ITWayBDTask task = controller.tasks[index];
-            return Card(
-              child: ListTile(
-                title: Text(task.title ?? "No Title"),
-                subtitle: Text(task.description ?? "No Description"),
-                trailing: Text(task.status ?? "Unknown"),
-              ),
-            );
-          },
+        return SizedBox(
+          child: ListView.builder(
+            itemCount: controller.tasks.length,
+            itemBuilder: (context, index) {
+              ITWayBDTask task = controller.tasks[index];
+              return Card(
+                child: ListTile(
+                  title: Text(task.title ?? "No Title"),
+                  subtitle: Text(task.description ?? "No Description"),
+                  trailing: Text(task.status ?? "Unknown"),
+                ),
+              );
+            },
+          ),
         );
       }),
     );
