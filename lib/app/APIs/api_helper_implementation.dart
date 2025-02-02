@@ -157,7 +157,30 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
       return Left(CustomError(500, message: 'Network error: $e'));
     }
   }
+ /// **Edit Task (PUT Request)**
+ @override
+  Future<Either<CustomError, ITWayBDTask>> editTask(
+      String taskId, String title, String description, String status, String dueDate) async {
+    try {
+      final response = await put('tasks/$taskId', {
+        "title": title,
+        "description": description,
+        "status": status,
+        "dueDate": dueDate, // ✅ Now dueDate can be changed
+      });
 
+      if (response.statusCode == 200 && response.body['success'] == true) {
+        final updatedTask = ITWayBDTask.fromJson(response.body['data']);
+        return Right(updatedTask);
+      } else {
+        return Left(CustomError(response.statusCode ?? 500,
+            message: response.body['message'] ?? 'Failed to update task'));
+      }
+    } catch (e) {
+      log('Error updating task: $e');
+      return Left(CustomError(500, message: 'Network error: $e'));
+    }
+  }
   /// **Delete Task (DELETE Request)**
   @override
   Future<Either<CustomError, String>> deleteTask(String taskId) async {
