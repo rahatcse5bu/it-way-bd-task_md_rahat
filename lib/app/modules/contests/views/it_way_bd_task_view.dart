@@ -136,7 +136,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                             ),
                             SizedBox(height: 8.h),
                             Text(Utils.formatDateToBangla(
-                               task.dueDate?? DateTime.now() )),
+                                task.dueDate ?? DateTime.now())),
                           ],
                         ),
                         // trailing: Text(
@@ -154,21 +154,55 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                                       controller.markAsCompleted(task.id);
                                     },
                                   ),
+                            PopupMenuButton<String>(
+                              onSelected: (String choice) {
+                                if (choice == "Edit") {
+                                  showEditTaskBottomSheet(task, controller);
+                                } else if (choice == "Delete") {
+                                  controller.deleteTask(task.id);
+                                }
+                              },
+                              itemBuilder: (BuildContext context) => [
+                                /// **Edit Option**
+                                PopupMenuItem<String>(
+                                  value: "Edit",
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.edit, color: Colors.blue),
+                                      SizedBox(width: 10),
+                                      Text("Edit"),
+                                    ],
+                                  ),
+                                ),
+
+                                /// **Delete Option**
+                                PopupMenuItem<String>(
+                                  value: "Delete",
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.delete, color: Colors.red),
+                                      SizedBox(width: 10),
+                                      Text("Delete"),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
 
                             /// **Edit Button (Opens BottomSheet)**
-                            IconButton(
-                              icon: Icon(Icons.edit, color: Colors.blue),
-                              onPressed: () {
-                                showEditTaskBottomSheet(
-                                    task, controller); // ✅ Open Edit Popup
-                              },
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                controller.deleteTask(task.id);
-                              },
-                            ),
+                            // IconButton(
+                            //   icon: Icon(Icons.edit, color: Colors.blue),
+                            //   onPressed: () {
+                            //     showEditTaskBottomSheet(
+                            //         task, controller); // ✅ Open Edit Popup
+                            //   },
+                            // ),
+                            // IconButton(
+                            //   icon: Icon(Icons.delete, color: Colors.red),
+                            //   onPressed: () {
+                            //     controller.deleteTask(task.id);
+                            //   },
+                            // ),
                           ],
                         ),
                       ),
@@ -219,8 +253,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
   /// **Determine the Border Color for Each Task**
   Color _getBorderColor(ITWayBDTask task) {
     DateTime now = DateTime.now();
-    DateTime? dueDate =
-        task.dueDate != null ? task.dueDate : null;
+    DateTime? dueDate = task.dueDate != null ? task.dueDate : null;
 
     if (task.status == "completed") {
       return Colors.green; // ✅ Completed → Green
