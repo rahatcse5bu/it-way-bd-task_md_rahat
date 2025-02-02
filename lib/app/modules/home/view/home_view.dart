@@ -22,10 +22,10 @@ class HomeView extends GetView<HomeController> {
           leadingWidget: null
 
          ),
-      body: Obx(() => Container(
+      body:  Container(
           padding: EdgeInsets.fromLTRB(19.w, 12.h, 19.w, 12.h),
           color: Colors.white,
-          child: ITWayBDTaskView())),
+          child: ITWayBDTaskView()),
    
     );
   }

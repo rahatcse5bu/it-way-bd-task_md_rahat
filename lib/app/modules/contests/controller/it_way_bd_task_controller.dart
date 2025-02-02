@@ -9,24 +9,30 @@ class ITWayBDTaskController extends GetxController {
   final ApiHelper _apiHelper = Get.find<ApiHelper>();
 
   var tasks = <ITWayBDTask>[].obs; // Observable list of tasks
-
+ var errorMessage = ''.obs;
   var isLoading = false.obs;
-
+  /// ✅ Track Selected Tab (Default: 0 -> "All")
+  var selectedTab = 0.obs;
   @override
   void onInit() {
     super.onInit();
-    fetchContests();
+    fetchTasks();
 
   }
 
-
+  /// Update Selected Tab
+  void updateTab(int index) {
+    selectedTab.value = index;
+  }
 
  
-  Future<void> fetchContests() async {
+  Future<void> fetchTasks() async {
     isLoading(true);
+    errorMessage.value = '';
     final result = await _apiHelper.fetchAllTasks();
     result.fold(
       (error) {
+         errorMessage.value = error.message;
         Get.snackbar('Error', error.message ?? 'Failed to load tasks');
       },
       (data) {
