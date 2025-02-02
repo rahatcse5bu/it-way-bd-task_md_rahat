@@ -85,13 +85,13 @@ class OnboardingScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/main-logo.svg',
+                        'assets/logo/Logo.png',
                         width: 50.w,
                         height: 50.h,
                       ),
                       SizedBox(width: 5.w),
                       Text(
-                        'Prostuti',
+                        'IT Way BD',
                         style: TextStyle(
                           fontSize: 25.sp,
                           fontWeight: FontWeight.bold,

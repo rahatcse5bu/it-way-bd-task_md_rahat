@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../common/custom_appbar.dart';
+import '../../../common/custom_simple_appbar.dart';
 import '../../../common/widgets/bottom_nav_bar_widget.dart';
 import '../controller/home_controller.dart';
-import '../widgets/home_bottom_nav_more_bottom_sheet.dart';
 import '../widgets/home_main_widget.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -19,12 +19,13 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar.appBar(
-          title: '',
+      appBar: CustomSimpleAppBar.appBar(
+          title: 'IT Way BD Task',
           backgroundColor: Colors.white,
-          // leadingWidth: 100,
+          centerTitle: true, 
+          leadingWidget: null
 
-          name: "Rahat"),
+         ),
       body: Obx(() => Container(
           padding: EdgeInsets.fromLTRB(19.w, 12.h, 19.w, 12.h),
           color: Colors.white,
@@ -33,15 +34,15 @@ class HomeView extends GetView<HomeController> {
             currentIndex: controller.currentIndex.value,
             onTap: (value) {
               if (value == 4) {
-                Get.bottomSheet(
-                  const HomeBottomNavMoreBottomSheet(),
-                  isScrollControlled:
-                      false, // Optional, to allow for full-screen or scrollable content
-                  backgroundColor: Colors
-                      .white, // Optional, background color for the bottom sheet
-                  ignoreSafeArea: false,
-                  isDismissible: true,
-                );
+                // Get.bottomSheet(
+                //   const HomeBottomNavMoreBottomSheet(),
+                //   isScrollControlled:
+                //       false, // Optional, to allow for full-screen or scrollable content
+                //   backgroundColor: Colors
+                //       .white, // Optional, background color for the bottom sheet
+                //   ignoreSafeArea: false,
+                //   isDismissible: true,
+                // );
               } else {
                 controller.currentIndex.value = value;
               }

@@ -42,13 +42,13 @@ class SplashView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/main-logo.svg',
+                    '/assets/logo/Logo.png',
                     width: 80.w,
                     height: 80.h,
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    'Prostuti',
+                    'IT Way BD',
                     style: TextStyle(
                       fontSize: 40.sp,
                       fontWeight: FontWeight.bold,

@@ -5,7 +5,6 @@ import '../../APIs/api_helper.dart';
 import '../../APIs/api_helper_implementation.dart';
 import '../../common/controller/app_controller.dart';
 import '../../constant/app_color.dart';
-import '../../modules/contests/models/contest_status.dart';
 import '../../storage/storage_helper.dart';
 
 class Utils {
@@ -76,9 +75,7 @@ class Utils {
         : Get.put(ApiHelperImpl());
   }
 
-  static ContestStatus getContestStatus(DateTime start, DateTime end) {
-    return ContestStatus.fromDates(start, end);
-  }
+
 
   /// Formats a [DateTime] into "সোমবার, ২২ ডিসেম্বর, ২৪  10:00 AM" format
   static String formatDateToBangla(DateTime date) {

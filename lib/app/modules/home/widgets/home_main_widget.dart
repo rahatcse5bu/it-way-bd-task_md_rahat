@@ -7,8 +7,7 @@ import 'package:get/get.dart';
 import '../../../common/custom_buttons.dart';
 import '../../../common/custom_prostuti_dialog.dart';
 import '../../../common/utils/task_utils.dart';
-import '../../contests/widgets/contest_cards_home_page_widget.dart';
-import '../../exam-types/widgets/exam-categories-widget.dart';
+import '../../contests/views/it_way_bd_task_view.dart';
 import '../controller/home_controller.dart';
 
 class HomeMainWidget extends GetWidget<HomeController> {
@@ -37,19 +36,7 @@ class HomeMainWidget extends GetWidget<HomeController> {
             CustomButton.button(
                 text: "Dialog",
                 onPressed: () {
-                  // Show a success modal with two buttons
-// PostutiDialog.success(
-//   "Operation completed successfully!",
-//   isBottomButton: true,
-//   noOfButtons: 2,
-//   buttonLabels: ["OK", "Cancel"],
-//   buttonActions: [
-//     () => print("OK pressed"),
-//     () => Get.back(),
-//   ],
-// );
 
-// Show a warning modal with centered text and three buttons
                   PostutiDialog.warning(
                     "Are you sure you want to proceed?",
                     isBottomButton: true,
@@ -62,13 +49,8 @@ class HomeMainWidget extends GetWidget<HomeController> {
                     ],
                   );
                 }),
-            const ContestHomeCardsWrapperWidget(),
-            SizedBox(height: 23.h),
-            const ExamCategoriesWidget(),
-    
-            SizedBox(height: 23.h),
-            // const ModelTestHomeWidget(),
-            SizedBox(height: 23.h),
+             ITWayBDTaskView(),
+      
          
           ],
         ),
