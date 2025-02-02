@@ -13,6 +13,8 @@ class ITWayBDTaskController extends GetxController {
   var isLoading = false.obs;
   /// ✅ Track Selected Tab (Default: 0 -> "All")
   var selectedTab = 0.obs;
+     /// ✅ Track Search Query
+  var searchQuery = ''.obs;
   @override
   void onInit() {
     super.onInit();
@@ -25,7 +27,12 @@ class ITWayBDTaskController extends GetxController {
     selectedTab.value = index;
   }
 
- 
+   /// Update Search Query
+  void updateSearchQuery(String query) {
+    log("Query: $query");
+    searchQuery.value = query.toLowerCase();
+  }
+
   Future<void> fetchTasks() async {
     isLoading(true);
     errorMessage.value = '';
@@ -61,5 +68,33 @@ class ITWayBDTaskController extends GetxController {
     );
 
     isLoading.value = false;
+  }
+   /// Get Filtered Tasks Based on Tab and Search Query
+  List<ITWayBDTask> get filteredTasks {
+    List<ITWayBDTask> filtered = tasks;
+
+    // Filter by Tab
+    switch (selectedTab.value) {
+      case 1:
+        filtered = tasks.where((task) => task.status == "pending").toList();
+        break;
+      case 2:
+        filtered = tasks.where((task) => task.status == "completed").toList();
+        break;
+      case 3:
+        filtered = tasks.where((task) => task.status == "deleted").toList();
+        break;
+    }
+
+    // Apply Search Filter
+    if (searchQuery.value.isNotEmpty) {
+      filtered = filtered
+          .where((task) =>
+              (task.title ?? "").toLowerCase().contains(searchQuery.value) ||
+              (task.description ?? "").toLowerCase().contains(searchQuery.value))
+          .toList();
+    }
+
+    return filtered;
   }
 }

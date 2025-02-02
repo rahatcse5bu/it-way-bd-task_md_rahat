@@ -13,8 +13,25 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
     return Scaffold(
       body: Column(
         children: [
+            /// **Search Bar**
+          Padding(
+            padding: EdgeInsets.all(10.h),
+            child: TextField(
+              onChanged: controller.updateSearchQuery,
+              decoration: InputDecoration(
+
+                hintText: "Search tasks...",
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1),
+
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+              ),
+            ),
+          ),
           /// **Tabs Positioned Inside the Body**
-          Obx(() => Padding(
+          Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -25,7 +42,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                     _tabButton("Deleted", 3, controller),
                   ],
                 ),
-              )),
+              ),
 
           /// **Filtered Task List**
           Expanded(
@@ -36,29 +53,29 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
               if (controller.errorMessage.isNotEmpty) {
                 return Center(child: Text(controller.errorMessage.value));
               }
+              /// **Get Filtered Tasks (by Tab & Search)**
+              List<ITWayBDTask> filteredTasks = controller.filteredTasks;
 
-              /// **Filter Tasks Based on Selected Tab**
-              List<ITWayBDTask> filteredTasks;
-              switch (controller.selectedTab.value) {
-                case 1:
-                  filteredTasks = controller.tasks
-                      .where((task) => task.status?.toLowerCase() == "pending")
-                      .toList();
-                  break;
-                case 2:
-                  filteredTasks = controller.tasks
-                      .where(
-                          (task) => task.status?.toLowerCase() == "completed")
-                      .toList();
-                  break;
-                case 3:
-                  filteredTasks = controller.tasks
-                      .where((task) => task.status?.toLowerCase() == "deleted")
-                      .toList();
-                  break;
-                default:
-                  filteredTasks = controller.tasks;
-              }
+              // switch (controller.selectedTab.value) {
+              //   case 1:
+              //     filteredTasks = controller.tasks
+              //         .where((task) => task.status?.toLowerCase() == "pending")
+              //         .toList();
+              //     break;
+              //   case 2:
+              //     filteredTasks = controller.tasks
+              //         .where(
+              //             (task) => task.status?.toLowerCase() == "completed")
+              //         .toList();
+              //     break;
+              //   case 3:
+              //     filteredTasks = controller.tasks
+              //         .where((task) => task.status?.toLowerCase() == "deleted")
+              //         .toList();
+              //     break;
+              //   default:
+              //     filteredTasks = controller.tasks;
+              // }
 
               if (filteredTasks.isEmpty) {
                 return Center(child: Text("No tasks available"));
