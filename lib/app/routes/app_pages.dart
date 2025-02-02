@@ -5,7 +5,6 @@ import '../modules/home/binding/home_binding.dart';
 import '../modules/home/view/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 
@@ -13,7 +12,6 @@ import '../modules/splash/views/splash_view.dart';
 
 class Routes {
   static const splash = '/splash';
-  static const onboarding = '/onboarding';
   static const register = '/register';
   static const emailVarification = '/email-varification';
   static const login = '/login';
@@ -33,10 +31,7 @@ class AppPages {
       name: Routes.splash,
       page: () => const SplashView(),
     ),
-    GetPage(
-      name: Routes.onboarding,
-      page: () => const OnboardingScreen(),
-    ),
+
     GetPage(
       name: Routes.register,
       page: () => RegisterView(),

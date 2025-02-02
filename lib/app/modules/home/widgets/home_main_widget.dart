@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../common/custom_buttons.dart';
-import '../../../common/custom_prostuti_dialog.dart';
+import '../../../common/custom_it_way_bd_dialog.dart';
 import '../../../common/utils/task_utils.dart';
 import '../../contests/views/it_way_bd_task_view.dart';
 import '../controller/home_controller.dart';
