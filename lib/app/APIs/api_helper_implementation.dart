@@ -189,7 +189,7 @@ class ApiHelperImpl extends GetConnect implements ApiHelper {
     try {
       final response = await delete('tasks/$taskId');
 
-      if (response.statusCode == 200 && response.body['success'] == true) {
+      if (response.statusCode == 200 && response.body.containsKey('message')) {
         return Right("Task deleted successfully");
       } else {
         return Left(CustomError(response.statusCode ?? 500,
