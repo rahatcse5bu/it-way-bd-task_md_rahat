@@ -42,17 +42,17 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
               switch (controller.selectedTab.value) {
                 case 1:
                   filteredTasks = controller.tasks
-                      .where((task) => task.status == "pending")
+                      .where((task) => task.status?.toLowerCase() == "pending")
                       .toList();
                   break;
                 case 2:
                   filteredTasks = controller.tasks
-                      .where((task) => task.status == "completed")
+                      .where((task) => task.status?.toLowerCase() == "completed")
                       .toList();
                   break;
                 case 3:
                   filteredTasks = controller.tasks
-                      .where((task) => task.status == "deleted")
+                      .where((task) => task.status?.toLowerCase() == "deleted")
                       .toList();
                   break;
                 default:
@@ -67,8 +67,15 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                 itemCount: filteredTasks.length,
                 itemBuilder: (context, index) {
                   ITWayBDTask task = filteredTasks[index];
+                     /// **Determine Border Color**
+                  Color borderColor = _getBorderColor(task);
                   return Card(
+                       shape: RoundedRectangleBorder(
+                      side: BorderSide(color: borderColor, width: 1),
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
                     child: ListTile(
+                    
                       title: Text(task.title ?? "No Title"),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,5 +130,19 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
             ),
           )),
     );
+  }
+
+    /// **Determine the Border Color for Each Task**
+  Color _getBorderColor(ITWayBDTask task) {
+    DateTime now = DateTime.now();
+    DateTime? dueDate = task.dueDate != null ? DateTime.parse(task.dueDate!) : null;
+
+    if (task.status == "completed") {
+      return Colors.green; // ✅ Completed → Green
+    } else if (dueDate != null && dueDate.isBefore(now)) {
+      return Colors.red; // ❌ Expired & Not Completed → Red
+    } else {
+      return Colors.grey; // 🔘 Default (Pending or Future Due Date) → Grey
+    }
   }
 }
