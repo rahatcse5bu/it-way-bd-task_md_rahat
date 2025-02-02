@@ -28,4 +28,5 @@ abstract class ApiHelper {
   //     fetchSubCategoriesByCategoryId(String categoryId);
     Future<Either<CustomError, ITWayBDTask>> createTask(
       String title, String description);
+      Future<Either<CustomError, ITWayBDTask>> markTaskAsCompleted(String taskId);
 }

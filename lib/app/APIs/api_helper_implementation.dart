@@ -196,6 +196,23 @@ Future<Either<CustomError, List<ITWayBDTask>>> fetchAllTasks() async {
       return Left(CustomError(500, message: 'Network error: $e'));
     }
   }
+  /// **Mark Task as Completed (PUT Request)**
+@override
+  Future<Either<CustomError, ITWayBDTask>> markTaskAsCompleted(String taskId) async {
+    try {
+      final response = await put('tasks/$taskId', {"status": "completed"});
 
+      if (response.statusCode == 200 && response.body['success'] == true) {
+        final updatedTask = ITWayBDTask.fromJson(response.body['data']);
+        return Right(updatedTask);
+      } else {
+        return Left(CustomError(response.statusCode ?? 500,
+            message: response.body['message'] ?? 'Failed to update task status'));
+      }
+    } catch (e) {
+      log('Error marking task as completed: $e');
+      return Left(CustomError(500, message: 'Network error: $e'));
+    }
+  }
  
 }
