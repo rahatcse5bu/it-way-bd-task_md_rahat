@@ -47,7 +47,8 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                   break;
                 case 2:
                   filteredTasks = controller.tasks
-                      .where((task) => task.status?.toLowerCase() == "completed")
+                      .where(
+                          (task) => task.status?.toLowerCase() == "completed")
                       .toList();
                   break;
                 case 3:
@@ -67,27 +68,46 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                 itemCount: filteredTasks.length,
                 itemBuilder: (context, index) {
                   ITWayBDTask task = filteredTasks[index];
-                     /// **Determine Border Color**
+
+                  /// **Determine Border Color**
                   Color borderColor = _getBorderColor(task);
                   return Card(
-                       shape: RoundedRectangleBorder(
+                    shape: RoundedRectangleBorder(
                       side: BorderSide(color: borderColor, width: 1),
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: ListTile(
-                    
-                      title: Text(task.title ?? "No Title"),
+                      title: Text(
+                        task.title ?? "No Title",
+                        style: TextStyle(
+                          decoration: task.status == "completed"
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                          // ✅ Strikethrough for completed
+                        ),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Divider(),
-                          Text(task.description ?? "No Description"),
+                          Text(
+                            task.description ?? "No Description",
+                            style: TextStyle(
+                              decoration: task.status == "completed"
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
+                              // ✅ Strikethrough for completed
+                            ),
+                          ),
                           SizedBox(height: 8.h),
                           Text(Utils.formatDateToBangla(
                               DateTime.parse(task.dueDate ?? ''))),
                         ],
                       ),
-                      trailing: Text(task.status ?? "Unknown"),
+                      trailing: Text(
+                        task.status?.toUpperCase() ?? "Unknown",
+                        style: TextStyle(color: _getBorderColor(task)),
+                      ),
                     ),
                   );
                 },
@@ -132,10 +152,11 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
     );
   }
 
-    /// **Determine the Border Color for Each Task**
+  /// **Determine the Border Color for Each Task**
   Color _getBorderColor(ITWayBDTask task) {
     DateTime now = DateTime.now();
-    DateTime? dueDate = task.dueDate != null ? DateTime.parse(task.dueDate!) : null;
+    DateTime? dueDate =
+        task.dueDate != null ? DateTime.parse(task.dueDate!) : null;
 
     if (task.status == "completed") {
       return Colors.green; // ✅ Completed → Green
