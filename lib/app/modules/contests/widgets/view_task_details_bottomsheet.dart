@@ -37,7 +37,7 @@ void showViewTaskBottomSheet(ITWayBDTask task) {
           /// **Due Date**
           _buildDetailRow(
               "Due Date:",
-              Utils.formatDateToBangla(DateTime.parse(task.dueDate!)) ??
+              Utils.formatDateToBangla(task.dueDate ?? DateTime.now()) ??
                   "Not Set"),
 
           SizedBox(height: 15),

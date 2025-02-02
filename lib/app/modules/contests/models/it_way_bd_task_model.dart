@@ -5,7 +5,7 @@ class ITWayBDTask {
   final String? title;
   final String? description;
   final String? status;
-  final String? dueDate;
+  final DateTime? dueDate;
  
 
   ITWayBDTask({

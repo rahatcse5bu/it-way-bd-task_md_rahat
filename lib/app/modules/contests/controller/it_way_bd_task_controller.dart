@@ -91,6 +91,28 @@ class ITWayBDTaskController extends GetxController {
 
     isLoading.value = false;
   }
+ 
+   /// **Edit Task with Due Date**
+  Future<void> editTask(String taskId, String newTitle, String newDescription, String newStatus, String newDueDate) async {
+    isLoading.value = true;
+
+    final response = await _apiHelper.editTask(taskId, newTitle, newDescription, newStatus, newDueDate);
+    response.fold(
+      (error) {
+        Get.snackbar('Error', error.message);
+      },
+      (updatedTask) {
+        int index = tasks.indexWhere((task) => task.id == taskId);
+        if (index != -1) {
+          tasks[index] = updatedTask;
+        }
+        Get.snackbar('Success', 'Task updated successfully!');
+        Get.back(); // ✅ Close BottomSheet after editing
+      },
+    );
+
+    isLoading.value = false;
+  }
   /// **Delete Task**
   Future<void> deleteTask(String taskId) async {
     isLoading.value = true;

@@ -6,6 +6,7 @@ import '../../../common/utils/task_utils.dart';
 import '../controller/it_way_bd_task_controller.dart';
 import '../models/it_way_bd_task_model.dart';
 import '../widgets/create_it_way_bd_task_bottomsheet.dart';
+import '../widgets/edit_task_bottomsheet.dart';
 import '../widgets/view_task_details_bottomsheet.dart';
 
 class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
@@ -135,7 +136,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                             ),
                             SizedBox(height: 8.h),
                             Text(Utils.formatDateToBangla(
-                                DateTime.parse(task.dueDate ?? ''))),
+                               task.dueDate?? DateTime.now() )),
                           ],
                         ),
                         // trailing: Text(
@@ -153,6 +154,15 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                                       controller.markAsCompleted(task.id);
                                     },
                                   ),
+
+                            /// **Edit Button (Opens BottomSheet)**
+                            IconButton(
+                              icon: Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () {
+                                showEditTaskBottomSheet(
+                                    task, controller); // ✅ Open Edit Popup
+                              },
+                            ),
                             IconButton(
                               icon: Icon(Icons.delete, color: Colors.red),
                               onPressed: () {
@@ -210,7 +220,7 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
   Color _getBorderColor(ITWayBDTask task) {
     DateTime now = DateTime.now();
     DateTime? dueDate =
-        task.dueDate != null ? DateTime.parse(task.dueDate!) : null;
+        task.dueDate != null ? task.dueDate : null;
 
     if (task.status == "completed") {
       return Colors.green; // ✅ Completed → Green
