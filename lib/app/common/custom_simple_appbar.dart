@@ -15,6 +15,7 @@ class CustomSimpleAppBar {
     List<Widget>? actions,
     IconData? leadingIcon,
     Widget? leadingWidget,
+    bool isBackIcon = true,
     double? leadingWidth,
     VoidCallback? onLeadingPressed,
   }) {
@@ -32,19 +33,22 @@ class CustomSimpleAppBar {
         backgroundColor: backgroundColor ?? Colors.white,
         automaticallyImplyLeading: true,
         actions: actions ?? [],
-        leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 10.w),
-              decoration: const ShapeDecoration(
-                  shape: CircleBorder(
-                      side: BorderSide(width: 1, color: AppColors.primary))),
-              child: const Icon(
-                Icons.arrow_back,
-                color: AppColors.primary,
-              )),
-        ));
+        leading: isBackIcon
+            ? GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10.w),
+                    decoration: const ShapeDecoration(
+                        shape: CircleBorder(
+                            side: BorderSide(
+                                width: 1, color: AppColors.primary))),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: AppColors.primary,
+                    )),
+              )
+            : leadingWidget);
   }
 }

@@ -6,6 +6,7 @@ import '../../../common/utils/task_utils.dart';
 import '../controller/it_way_bd_task_controller.dart';
 import '../models/it_way_bd_task_model.dart';
 import '../widgets/create_it_way_bd_task_bottomsheet.dart';
+import '../widgets/view_task_details_bottomsheet.dart';
 
 class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
   @override
@@ -100,6 +101,10 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                         borderRadius: BorderRadius.circular(8.r),
                       ),
                       child: ListTile(
+                        onTap: () {
+                          showViewTaskBottomSheet(
+                              task); // ✅ Open View Task Popup
+                        },
                         title: Text(
                           task.title ?? "No Title",
                           maxLines: 1, // ✅ Restrict to 1 line
