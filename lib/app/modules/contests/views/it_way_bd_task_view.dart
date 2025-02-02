@@ -81,77 +81,85 @@ class ITWayBDTaskView extends GetView<ITWayBDTaskController> {
                 return Center(child: Text("No tasks available"));
               }
 
-              return ListView.builder(
-                itemCount: filteredTasks.length,
-                itemBuilder: (context, index) {
-                  ITWayBDTask task = filteredTasks[index];
+              return RefreshIndicator(
+                onRefresh: () async {
+                  await controller.fetchTasks(); // ✅ Refresh data from API
+                },
+                child: ListView.builder(
+                  physics:
+                      AlwaysScrollableScrollPhysics(), // ✅ Ensure pull-to-refresh works
+                  itemCount: filteredTasks.length,
+                  itemBuilder: (context, index) {
+                    ITWayBDTask task = filteredTasks[index];
 
-                  /// **Determine Border Color**
-                  Color borderColor = _getBorderColor(task);
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: borderColor, width: 1),
-                      borderRadius: BorderRadius.circular(8.r),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        task.title ?? "No Title",
-                        maxLines: 1, // ✅ Restrict to 1 line
-                        overflow: TextOverflow.ellipsis, // ✅ Add ellipsis (...)
-                        style: TextStyle(
-                          decoration: task.status == "completed"
-                              ? TextDecoration.lineThrough
-                              : TextDecoration.none,
-                          // ✅ Strikethrough for completed
+                    /// **Determine Border Color**
+                    Color borderColor = _getBorderColor(task);
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: borderColor, width: 1),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: ListTile(
+                        title: Text(
+                          task.title ?? "No Title",
+                          maxLines: 1, // ✅ Restrict to 1 line
+                          overflow:
+                              TextOverflow.ellipsis, // ✅ Add ellipsis (...)
+                          style: TextStyle(
+                            decoration: task.status == "completed"
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                            // ✅ Strikethrough for completed
+                          ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Divider(),
+                            Text(
+                              task.description ?? "No Description",
+                              maxLines: 1, // ✅ Restrict to 1 line
+                              overflow:
+                                  TextOverflow.ellipsis, // ✅ Add ellipsis (...)
+                              style: TextStyle(
+                                decoration: task.status == "completed"
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                                // ✅ Strikethrough for completed
+                              ),
+                            ),
+                            SizedBox(height: 8.h),
+                            Text(Utils.formatDateToBangla(
+                                DateTime.parse(task.dueDate ?? ''))),
+                          ],
+                        ),
+                        // trailing: Text(
+                        //   task.status?.toUpperCase() ?? "Unknown",
+                        //   style: TextStyle(color: _getBorderColor(task)),
+                        // ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            task.status == "completed"
+                                ? Icon(Icons.check, color: Colors.green)
+                                : IconButton(
+                                    icon: Icon(Icons.check_box_outline_blank),
+                                    onPressed: () {
+                                      controller.markAsCompleted(task.id);
+                                    },
+                                  ),
+                            IconButton(
+                              icon: Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                controller.deleteTask(task.id);
+                              },
+                            ),
+                          ],
                         ),
                       ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Divider(),
-                          Text(
-                            task.description ?? "No Description",
-                            maxLines: 1, // ✅ Restrict to 1 line
-                            overflow:
-                                TextOverflow.ellipsis, // ✅ Add ellipsis (...)
-                            style: TextStyle(
-                              decoration: task.status == "completed"
-                                  ? TextDecoration.lineThrough
-                                  : TextDecoration.none,
-                              // ✅ Strikethrough for completed
-                            ),
-                          ),
-                          SizedBox(height: 8.h),
-                          Text(Utils.formatDateToBangla(
-                              DateTime.parse(task.dueDate ?? ''))),
-                        ],
-                      ),
-                      // trailing: Text(
-                      //   task.status?.toUpperCase() ?? "Unknown",
-                      //   style: TextStyle(color: _getBorderColor(task)),
-                      // ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          task.status == "completed"
-                              ? Icon(Icons.check, color: Colors.green)
-                              : IconButton(
-                                  icon: Icon(Icons.check_box_outline_blank),
-                                  onPressed: () {
-                                    controller.markAsCompleted(task.id);
-                                  },
-                                ),
-                          IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              controller.deleteTask(task.id);
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               );
             }),
           ),
