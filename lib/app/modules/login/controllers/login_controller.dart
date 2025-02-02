@@ -32,7 +32,7 @@ class LoginController extends GetxController {
     isLoading(true);
 
     final loginRequest = LoginRequestModel(
-      identifier: email,
+      email: email,
       password: password,
     );
 

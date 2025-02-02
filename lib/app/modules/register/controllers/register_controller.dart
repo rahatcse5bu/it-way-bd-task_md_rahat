@@ -16,10 +16,10 @@ class RegisterController extends GetxController {
       response.fold(
           (error) => Get.snackbar('Error', error.message), // Error handling
           (data) {
-        Get.toNamed(Routes.emailVarification,
+        Get.toNamed(Routes.home,
             arguments: {"email": model.email});
         Get.snackbar('Success',
-            'Registration successful! Now Verify OTP sent to your email'); // Success handling
+            'Registration successful!'); // Success handling
       });
     } catch (e) {
       Get.snackbar('Error', 'An unexpected error occurred.');

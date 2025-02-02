@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../common/custom_styles.dart';
+import '../../../common/widgets/header_curve_logo_widget.dart';
 import '../../../constant/app_color.dart';
 import '../controllers/register_controller.dart';
 import '../widgets/register_form.dart';
@@ -36,62 +37,13 @@ class RegisterView extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                        width: screenWidth,
-                        height: 120.h,
-                        // height: screenHeight - 40.h,
-                        child: Stack(
-                          children: [
-                            Container(
-                                width: screenWidth,
-                                height: 50.h,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.primary,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30)),
-                                ),
-                                child: null),
-                            Positioned(
-                              bottom: 0.h,
-                              child: Image.asset(
-                                'assets/blue-banner.svg',
-                                width: screenWidth,
-                              ),
-                            ),
-                            Positioned(
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'assets/main-logo.svg',
-                                      width: 60.w,
-                                      height: 60.h,
-                               
-                                    ),
-                                    SizedBox(width: 10.w),
-                                    Text(
-                                      'Prostuti',
-                                      style: TextStyle(
-                                        fontSize: 32.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                     const HeaderCurveLogoWidget(),
                       const SizedBox(
                         height: 20,
                       ),
                       Center(
                         child: Text(
-                          'Create Your Prostuti Account',
+                          'Create Your Account',
                           style: CustomStyles.textStyle.copyWith(
                             fontSize: 24.sp,
                           ),
@@ -102,7 +54,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       Center(
                         child: Text(
-                          'Prepare, Perform, Progress',
+                          'Manage, Track, Progress',
                           style: CustomStyles.textStyle.copyWith(
                               color: AppColors.midnightBlue.withOpacity(0.7)),
                         ),

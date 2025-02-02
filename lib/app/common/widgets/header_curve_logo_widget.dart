@@ -28,7 +28,7 @@ import '../../constant/app_color.dart';
           Positioned(
             bottom: 0.h,
             child: Image.asset(
-              'assets/blue-banner.jpg',
+              'assets/blue-banner.png',
               width: screenWidth,
             ),
           ),
@@ -38,14 +38,14 @@ import '../../constant/app_color.dart';
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/main-logo.svg',
+                    'assets/logo/Logo.png',
                     width: 60.w,
                     height: 60.h,
                 
                   ),
                   SizedBox(width: 10.w),
                   Text(
-                    'Prostuti',
+                    'It Way BD',
                     style: TextStyle(
                       fontSize: 32.sp,
                       fontWeight: FontWeight.w500,

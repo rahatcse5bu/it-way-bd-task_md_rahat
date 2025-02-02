@@ -16,6 +16,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -47,6 +48,25 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
               validator: (value) => value == null || value.isEmpty
                   ? 'Full Name is required'
+                  : null,
+            ),
+               const SizedBox(height: 16),
+            TextFormField(
+              controller: usernameController,
+              decoration:
+                  CustomStyles.inputDecoration('Username', 'Enter your username')
+                      .copyWith(
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(left: 12),
+                  child: Icon(
+                    Icons.email,
+                    color: AppColors.blueGray,
+                    size: 20,
+                  ),
+                ),
+              ),
+              validator: (value) => value == null || value.length<6
+                  ? 'Invalid username! Username should be at least 6 characters long'
                   : null,
             ),
             const SizedBox(height: 16),
@@ -133,6 +153,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           if (_formKey.currentState!.validate()) {
                             final model = RegisterRequestModel(
                               fullName: fullNameController.text,
+                              username: usernameController.text,
                               email: emailController.text,
                               phone: phoneController.text,
                               password: passwordController.text,
