@@ -9,17 +9,18 @@ class ITWayBDTaskController extends GetxController {
   final ApiHelper _apiHelper = Get.find<ApiHelper>();
 
   var tasks = <ITWayBDTask>[].obs; // Observable list of tasks
- var errorMessage = ''.obs;
+  var errorMessage = ''.obs;
   var isLoading = false.obs;
+
   /// ✅ Track Selected Tab (Default: 0 -> "All")
   var selectedTab = 0.obs;
-     /// ✅ Track Search Query
+
+  /// ✅ Track Search Query
   var searchQuery = ''.obs;
   @override
   void onInit() {
     super.onInit();
     fetchTasks();
-
   }
 
   /// Update Selected Tab
@@ -27,7 +28,7 @@ class ITWayBDTaskController extends GetxController {
     selectedTab.value = index;
   }
 
-   /// Update Search Query
+  /// Update Search Query
   void updateSearchQuery(String query) {
     log("Query: $query");
     searchQuery.value = query.toLowerCase();
@@ -39,7 +40,7 @@ class ITWayBDTaskController extends GetxController {
     final result = await _apiHelper.fetchAllTasks();
     result.fold(
       (error) {
-         errorMessage.value = error.message;
+        errorMessage.value = error.message;
         Get.snackbar('Error', error.message ?? 'Failed to load tasks');
       },
       (data) {
@@ -49,7 +50,6 @@ class ITWayBDTaskController extends GetxController {
     );
     isLoading(false);
   }
-
 
   /// Create Task and Update UI
   Future<void> createTask(String title, String description) async {
@@ -91,12 +91,14 @@ class ITWayBDTaskController extends GetxController {
 
     isLoading.value = false;
   }
- 
-   /// **Edit Task with Due Date**
-  Future<void> editTask(String taskId, String newTitle, String newDescription, String newStatus, String newDueDate) async {
+
+  /// **Edit Task with Due Date**
+  Future<void> editTask(String taskId, String newTitle, String newDescription,
+      String newStatus, String newDueDate) async {
     isLoading.value = true;
 
-    final response = await _apiHelper.editTask(taskId, newTitle, newDescription, newStatus, newDueDate);
+    final response = await _apiHelper.editTask(
+        taskId, newTitle, newDescription, newStatus, newDueDate);
     response.fold(
       (error) {
         Get.snackbar('Error', error.message);
@@ -105,14 +107,20 @@ class ITWayBDTaskController extends GetxController {
         int index = tasks.indexWhere((task) => task.id == taskId);
         if (index != -1) {
           tasks[index] = updatedTask;
+          //  Get.snackbar('Success', 'Task updated successfully!');
+          // Get.back(); // ✅ Close BottomSheet after editing
         }
-        Get.snackbar('Success', 'Task updated successfully!');
-        Get.back(); // ✅ Close BottomSheet after editing
       },
     );
 
+    /// **Delay Snackbar to Ensure UI Refresh Completes**
+    Future.delayed(Duration(milliseconds: 200), () {
+      Get.back(); // ✅ Close BottomSheet after editing
+      Get.snackbar('Success', 'Task updated successfully!');
+    });
     isLoading.value = false;
   }
+
   /// **Delete Task**
   Future<void> deleteTask(String taskId) async {
     isLoading.value = true;
@@ -132,7 +140,7 @@ class ITWayBDTaskController extends GetxController {
     isLoading.value = false;
   }
 
-   /// Get Filtered Tasks Based on Tab and Search Query
+  /// Get Filtered Tasks Based on Tab and Search Query
   List<ITWayBDTask> get filteredTasks {
     List<ITWayBDTask> filtered = tasks;
 
@@ -154,7 +162,9 @@ class ITWayBDTaskController extends GetxController {
       filtered = filtered
           .where((task) =>
               (task.title ?? "").toLowerCase().contains(searchQuery.value) ||
-              (task.description ?? "").toLowerCase().contains(searchQuery.value))
+              (task.description ?? "")
+                  .toLowerCase()
+                  .contains(searchQuery.value))
           .toList();
     }
 
