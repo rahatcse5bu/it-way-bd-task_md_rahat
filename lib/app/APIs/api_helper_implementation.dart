@@ -171,7 +171,31 @@ Future<Either<CustomError, List<ITWayBDTask>>> fetchAllTasks() async {
   //   }
   // }
 
- 
+   /// Create New Task
+@override
+  Future<Either<CustomError, ITWayBDTask>> createTask(
+      String title, String description) async {
+    try {
+      final response = await post('tasks', {
+        "title": title,
+        "description": description,
+        "status": "pending",
+        "dueDate": DateTime.now().toIso8601String()
+      });
+
+      if (response.statusCode == 201 && response.body['success'] == true) {
+        final ITWayBDTask newTask =
+            ITWayBDTask.fromJson(response.body['data']);
+        return Right(newTask);
+      } else {
+        return Left(CustomError(response.statusCode ?? 500,
+            message: response.body['message'] ?? 'Failed to create task'));
+      }
+    } catch (e) {
+      log('Error creating task: $e');
+      return Left(CustomError(500, message: 'Network error: $e'));
+    }
+  }
 
  
 }

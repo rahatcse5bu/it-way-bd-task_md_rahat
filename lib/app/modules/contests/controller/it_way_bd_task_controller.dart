@@ -36,4 +36,24 @@ class ITWayBDTaskController extends GetxController {
     );
     isLoading(false);
   }
+
+
+  /// Create Task and Update UI
+  Future<void> createTask(String title, String description) async {
+    isLoading.value = true;
+
+    final response = await _apiHelper.createTask(title, description);
+    response.fold(
+      (error) {
+        Get.snackbar('Error', error.message);
+      },
+      (newTask) {
+        tasks.add(newTask); // ✅ Add new task to the list dynamically
+        Get.snackbar('Success', 'Task created successfully!');
+        Get.back(); // ✅ Close the dialog after task creation
+      },
+    );
+
+    isLoading.value = false;
+  }
 }
