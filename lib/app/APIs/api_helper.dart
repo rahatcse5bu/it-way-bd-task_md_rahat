@@ -29,4 +29,5 @@ abstract class ApiHelper {
     Future<Either<CustomError, ITWayBDTask>> createTask(
       String title, String description);
       Future<Either<CustomError, ITWayBDTask>> markTaskAsCompleted(String taskId);
+        Future<Either<CustomError, String>> deleteTask(String taskId);
 }

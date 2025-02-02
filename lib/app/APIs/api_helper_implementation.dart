@@ -214,5 +214,21 @@ Future<Either<CustomError, List<ITWayBDTask>>> fetchAllTasks() async {
       return Left(CustomError(500, message: 'Network error: $e'));
     }
   }
- 
+   /// **Delete Task (DELETE Request)**
+@override
+  Future<Either<CustomError, String>> deleteTask(String taskId) async {
+    try {
+      final response = await delete('tasks/$taskId');
+
+      if (response.statusCode == 200 && response.body['success'] == true) {
+        return Right("Task deleted successfully");
+      } else {
+        return Left(CustomError(response.statusCode ?? 500,
+            message: response.body['message'] ?? 'Failed to delete task'));
+      }
+    } catch (e) {
+      log('Error deleting task: $e');
+      return Left(CustomError(500, message: 'Network error: $e'));
+    }
+  }
 }
