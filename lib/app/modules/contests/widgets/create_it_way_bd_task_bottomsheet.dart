@@ -36,9 +36,11 @@ void showCreateTaskBottomSheet(ITWayBDTaskController taskController) {
           /// **Task Description Input**
           TextField(
             controller: descController,
+            maxLines: 5, // ✅ Increases Height (Allows More Text)
             decoration: InputDecoration(
               labelText: "Description",
               border: OutlineInputBorder(),
+              alignLabelWithHint: true, // ✅ Aligns Label to Top
             ),
           ),
           SizedBox(height: 15),
@@ -65,11 +67,12 @@ void showCreateTaskBottomSheet(ITWayBDTaskController taskController) {
                         titleController.text, descController.text);
                     Get.back(); // ✅ Close BottomSheet after creation
                   } else {
-                    Get.snackbar("Error", "Title and Description are required!");
+                    Get.snackbar(
+                        "Error", "Title and Description are required!");
                   }
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                child: Text("Create"),
+                child: Text("Create", style: TextStyle(color: Colors.white),),
               ),
             ],
           ),
